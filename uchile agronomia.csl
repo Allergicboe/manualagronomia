@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="es-CL">
   <info>
-    <title>Manual UChile - Estilo personalizado sin DOI</title>
+    <title>Manual UChile - Estilo corregido sin DOI</title>
     <id>https://uchile.cl/manual-estilo-afe</id>
     <link href="https://uchile.cl/manual-estilo-afe" rel="self"/>
     <author>
       <name>ChatGPT adaptado a Universidad de Chile</name>
     </author>
     <category citation-format="author-date"/>
-    <category field="agronomy"/>
+    <category field="biology"/>
     <updated>2025-04-23T00:00:00+00:00</updated>
-    <summary>Estilo personalizado basado en el manual de redacción para tesis/AFE de la Universidad de Chile. Formato autor-año, revistas en cursiva, sin DOI.</summary>
+    <summary>Estilo corregido basado en el manual de redacción para tesis/AFE de la Universidad de Chile. Formato autor-año, revistas en cursiva, sin DOI.</summary>
   </info>
 
   <macro name="author">
@@ -36,9 +36,7 @@
   <macro name="volume-issue">
     <group delimiter="">
       <text variable="volume"/>
-      <group>
-        <text variable="issue" prefix="(" suffix=")"/>
-      </group>
+      <text variable="issue" prefix="(" suffix=")"/>
     </group>
   </macro>
 
@@ -54,7 +52,11 @@
     </group>
   </macro>
 
-  <citation collapse="year-suffix" delimiter="; " et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true">
+  <citation collapse="year-suffix" et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true">
+    <sort>
+      <key variable="author"/>
+      <key variable="issued"/>
+    </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
         <text macro="author"/>
