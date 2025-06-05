@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="es-CL">
   <info>
-    <title>Manual UChile - Estilo corregido sin DOI</title>
-    <id>https://uchile.cl/manual-estilo-afe</id>
-    <link href="https://uchile.cl/manual-estilo-afe" rel="self"/>
+    <title>Manual UChile - Estilo AFE (Modificado)</title>
+    <id>https://uchile.cl/manual-estilo-afe-modificado</id>
+    <link href="https://uchile.cl/manual-estilo-afe-modificado" rel="self"/>
     <author>
-      <name>ChatGPT adaptado a Universidad de Chile</name>
+      <name>ChatGPT adaptado a Universidad de Chile (Modificado por Gemini)</name>
     </author>
     <category citation-format="author-date"/>
     <category field="biology"/>
-    <updated>2025-04-23T00:00:00+00:00</updated>
-    <summary>Estilo corregido basado en el manual de redacción para tesis/AFE de la Universidad de Chile. Formato autor-año, revistas en cursiva, sin DOI.</summary>
+    <updated>2025-06-05T13:10:00-04:00</updated>
+    <summary>Estilo UChile con correcciones: 'y' para dos autores, et al. para 3+ autores en cursiva, y formato para fuentes electrónicas.</summary>
   </info>
+
+  <locale xml:lang="es-CL">
+    <terms>
+      <term name="and">y</term>
+      <term name="et-al" font-style="italic">et al.</term>
+      <term name="retrieved">Consultado en</term>
+    </terms>
+  </locale>
 
   <macro name="author">
     <names variable="author">
-      <name name-as-sort-order="first" initialize-with="." delimiter=", " and="text" delimiter-precedes-last="always"/>
+      <name name-as-sort-order="first" initialize-with="." delimiter=", " and="text" delimiter-precedes-last="never"/>
     </names>
   </macro>
 
@@ -26,58 +34,91 @@
   </macro>
 
   <macro name="title">
-    <text variable="title" suffix="."/>
-  </macro>
-
-  <macro name="container-title">
-    <text variable="container-title" font-style="italic"/>
-  </macro>
-
-  <macro name="volume-issue">
-    <group delimiter="">
-      <text variable="volume"/>
-      <text variable="issue" prefix="(" suffix=")"/>
-    </group>
-  </macro>
-
-  <macro name="pages">
-    <text variable="page" prefix=":"/>
+    <text variable="title"/>
   </macro>
 
   <macro name="journal-info">
-    <group delimiter=" ">
-      <text macro="container-title"/>
-      <text macro="volume-issue"/>
-      <text macro="pages"/>
+    <group delimiter="">
+      <text variable="container-title" font-style="italic"/>
+      <text variable="volume" prefix=" "/>
+      <text variable="issue" prefix="(" suffix=")"/>
+      <text variable="page" prefix=":"/>
     </group>
   </macro>
 
-  <citation collapse="year-suffix" et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true">
+  <macro name="access">
+    <group delimiter=". ">
+        <group delimiter=" ">
+            <text value="Disponible en"/>
+            <text variable="URL"/>
+        </group>
+        <group prefix="(" suffix=")">
+            <text term="retrieved"/>
+            <text value=" "/>
+            <date variable="accessed">
+                <date-part name="month" form="long" suffix=" de "/>
+                <date-part name="year"/>
+            </date>
+        </group>
+    </group>
+  </macro>
+
+  <citation collapse="year-suffix" et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
     <sort>
-      <key variable="author"/>
       <key variable="issued"/>
+      <key variable="author"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
-        <text macro="author"/>
+        <names variable="author">
+          <name form="short"/>
+        </names>
         <text macro="issued"/>
       </group>
     </layout>
   </citation>
 
-  <bibliography hanging-indent="true" line-spacing="2" et-al-min="20" et-al-use-first="20">
+  <bibliography hanging-indent="true" line-spacing="2">
     <sort>
       <key macro="author"/>
       <key macro="issued"/>
     </sort>
     <layout>
-      <group delimiter=". ">
-        <text macro="author"/>
-        <text macro="issued"/>
-        <text macro="title"/>
-        <text macro="journal-info"/>
-      </group>
-      <text value="."/>
+      <choose>
+        <if type="article-journal">
+          <group suffix=".">
+            <group delimiter=". ">
+              <text macro="author"/>
+              <text macro="issued"/>
+              <text macro="title"/>
+            </group>
+            <text macro="journal-info"/>
+          </group>
+        </if>
+        <else-if type="webpage report" match="any">
+          <group suffix=".">
+            <group delimiter=". ">
+              <text macro="author"/>
+              <text macro="issued"/>
+              <text macro="title"/>
+              <text variable="publisher"/>
+              <text variable="publisher-place"/>
+              <text macro="access"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group suffix=".">
+            <group delimiter=". ">
+              <text macro="author"/>
+              <text macro="issued"/>
+              <text macro="title"/>
+              <text variable="publisher"/>
+              <text variable="publisher-place"/>
+            </group>
+          </group>
+        </else>
+      </choose>
     </layout>
   </bibliography>
 </style>
