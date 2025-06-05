@@ -84,10 +84,10 @@
     </group>
   </macro>
 
-  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year" year-suffix-delimiter=", " after-collapse-delimiter="; ">
     <sort>
-      <key macro="year-date"/>
-      <key variable="author"/>
+      <key macro="year-date" sort="ascending"/>
+      <key macro="author" sort="ascending"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
@@ -96,20 +96,6 @@
       </group>
     </layout>
   </citation>
-
-  <macro name="author-cite">
-    <names variable="author">
-      <name form="short" and="text" delimiter=", " et-al-min="3" et-al-use-first="1"/>
-      <et-al font-style="italic"/>
-      <substitute>
-        <names variable="editor">
-          <name form="short" and="text" delimiter=", " et-al-min="3" et-al-use-first="1"/>
-          <et-al font-style="italic"/>
-        </names>
-        <text variable="title" form="short"/>
-      </substitute>
-    </names>
-  </macro>
 
   <bibliography entry-spacing="1">
     <sort>
