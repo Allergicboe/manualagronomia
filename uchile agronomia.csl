@@ -40,6 +40,20 @@
     </names>
   </macro>
 
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", "/>
+      <et-al font-style="italic"/>
+      <substitute>
+        <names variable="editor">
+          <name form="short" and="text" delimiter=", "/>
+          <et-al font-style="italic"/>
+        </names>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
+
   <macro name="editor">
     <names variable="editor">
         <name initialize-with=". " delimiter=", " and="text" delimiter-precedes-last="never"/>
@@ -77,10 +91,7 @@
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
-        <names variable="author">
-            <name form="short" and="text" delimiter=", "/>
-            <et-al font-style="italic"/>
-        </names>
+        <text macro="author-short"/>
         <text macro="year-date"/>
       </group>
     </layout>
