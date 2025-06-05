@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="es-CL">
   <info>
-    <title>Manual de Estilo Proyecto de Tesis o AFE</title>
+    <title>Estilo AFE UChile (ANEXO 2 - Final Validado)</title>
     <id>http://uchile.cl/anexo2-final-validado</id>
     <link href="http://uchile.cl/anexo2-final-validado" rel="self"/>
     <author>
-      <name>Ignacio Valdivieso</name>
+      <name>Gemini (Generado para el usuario)</name>
     </author>
     <category citation-format="author-date"/>
     <category field="biology"/>
     <updated>2025-06-05T13:20:00-04:00</updated>
-    <summary>Generado según el documento original (consultado el 05-06-2025) mediante modelos de lenguaje IA</summary>
+    <summary>Versión final que implementa correctamente el formato de cursivas para 'et al.' e 'In' según la especificación de CSL.</summary>
   </info>
 
   <locale xml:lang="es-CL">
@@ -96,6 +96,20 @@
       </group>
     </layout>
   </citation>
+
+  <macro name="author-cite">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " et-al-min="3" et-al-use-first="1"/>
+      <et-al font-style="italic"/>
+      <substitute>
+        <names variable="editor">
+          <name form="short" and="text" delimiter=", " et-al-min="3" et-al-use-first="1"/>
+          <et-al font-style="italic"/>
+        </names>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
 
   <bibliography entry-spacing="1">
     <sort>
