@@ -86,6 +86,196 @@
     </layout>
   </citation>
 
+  <bibliography entry-spacing="1">
+    <sort>
+      <key macro="author"/>
+      <key macro="year-date"/>
+    </sort>
+    <layout>
+        <choose>
+            <if type="article-journal">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                    </group>
+                    <group prefix=" " delimiter=" ">
+                        <text variable="container-title"/>
+                        <text variable="volume"/>
+                    </group>
+                    <group>
+                        <text variable="issue" prefix="(" suffix=")"/>
+                        <text variable="page" prefix=":"/>
+                    </group>
+                </group>
+            </if>
+            <else-if type="book">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <text variable="edition"/>
+                        <text variable="publisher"/>
+                        <text variable="publisher-place"/>
+                    </group>
+                </group>
+            </else-if>
+            <else-if type="chapter">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <group>
+                            <label variable="page" form="short" suffix=" "/>
+                            <text variable="page"/>
+                        </group>
+                        <group delimiter=" ">
+                            <text term="in" font-style="italic" suffix=":"/>
+                            <text macro="editor"/>
+                            <text variable="container-title"/>
+                        </group>
+                        <text variable="edition"/>
+                        <text variable="publisher"/>
+                        <text variable="publisher-place"/>
+                    </group>
+                </group>
+            </else-if>
+            <else-if type="thesis">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <group delimiter=" ">
+                            <text variable="number-of-pages"/>
+                            <text value="p"/>
+                        </group>
+                        <text variable="genre"/>
+                        <text variable="publisher"/>
+                        <text variable="publisher-place"/>
+                    </group>
+                </group>
+            </else-if>
+            <else-if type="paper-conference">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <group delimiter=" ">
+                          <text variable="page" prefix=" " suffix="."/>
+                            <text term="in" font-style="italic" suffix=":"/>
+                            <text variable="event"/>
+                            <text variable="publisher-place" prefix=", "/>
+                        </group>
+                        <date variable="event-date" form="text"/>
+                        <text variable="publisher"/>
+                    </group>
+                </group>
+            </else-if>
+            <else-if type="webpage report" match="any">
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <text variable="publisher"/>
+                        <text variable="publisher-place"/>
+                        <text macro="access"/>
+                    </group>
+                </group>
+            </else-if>
+            <else>
+                <group suffix=".">
+                    <group delimiter=". ">
+                        <text macro="author"/>
+                        <text macro="year-date"/>
+                        <text variable="title"/>
+                        <text variable="publisher"/>
+                        <text variable="publisher-place"/>
+                    </group>
+                </group>
+            </else>
+        </choose>
+    </layout>
+  </bibliography>
+</style>
+  <locale xml:lang="es-CL">
+    <terms>
+      <term name="and">y</term>
+      <term name="et-al">et al.</term>
+      <term name="in">In</term>
+      <term name="retrieved">Consultado en</term>
+      <term name="editor" form="short">
+        <single>ed.</single>
+        <multiple>eds.</multiple>
+      </term>
+       <term name="page" form="short">
+        <single>p.</single>
+        <multiple>p.</multiple>
+      </term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="first" sort-separator=", " initialize-with=". " delimiter=", " and="text" delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="editor">
+    <names variable="editor">
+        <name initialize-with=". " delimiter=", " and="text" delimiter-precedes-last="never"/>
+        <label form="short" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+  
+  <macro name="year-date">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="access">
+    <group delimiter=". ">
+      <group delimiter=" ">
+        <text value="Disponible en"/>
+        <text variable="URL"/>
+      </group>
+      <group prefix="(" suffix=")">
+        <text term="retrieved"/>
+        <text value=" "/>
+        <date variable="accessed">
+          <date-part name="month" form="long" suffix=" de "/>
+          <date-part name="year"/>
+        </date>
+      </group>
+    </group>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
+    <sort>
+      <key macro="year-date"/>
+      <key variable="author"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <names variable="author">
+            <name form="short" and="text" delimiter=", "/>
+            <et-al font-style="italic"/>
+        </names>
+        <text macro="year-date"/>
+      </group>
+    </layout>
+  </citation>
+
   <bibliography hanging-indent="true" entry-spacing="1">
     <sort>
       <key macro="author"/>
