@@ -2,8 +2,8 @@
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="es-CL">
   <info>
     <title>Manual de Estilo Proyecto de Tesis o AFE</title>
-    <id>http://uchile.cl/</id>
-    <link href="http://uchile.cl/" rel="self"/>
+    <id>https://raw.githubusercontent.com/Allergicboe/manualagronomia/refs/heads/main/uchile%20agronomia.csl</id>
+    <link href="https://raw.githubusercontent.com/Allergicboe/manualagronomia/refs/heads/main/uchile%20agronomia.csl" rel="self"/>
     <author>
       <name>Ignacio Valdivieso</name>
     </author>
